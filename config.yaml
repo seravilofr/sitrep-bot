@@ -1,1 +1,8 @@
-
+events_per_brief: 5
+sentences_per_event: 3
+articles_to_scan: 40
+article_time_window_hours: 24
+timezone: Europe/Paris
+briefing_time: "08:00"
+risk_scale: "1-10"
+allow_duplicate_events: false
