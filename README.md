@@ -1,5 +1,7 @@
 # SITREP Bot
 
+![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
+
 ## Overview
 
 **SITREP Bot** is an automated geopolitical briefing agent that publishes a daily intelligence-style situation report to a Discord channel.
@@ -171,4 +173,8 @@ The project focuses on:
 
 ## License
 
-This project is open source and available under the MIT License.
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0).
+
+You are free to use, modify, and distribute this software under the terms of the GPL-3.0 license. Any derivative work must also be distributed under the same license.
+
+See the LICENSE file for details.
