@@ -136,6 +136,37 @@ The bot follows these steps:
 7. Retrieve a **historical geopolitical event that occurred on the same calendar day**.
 8. Publish the complete briefing to Discord.
 
+# Architecture
+
+```mermaid
+flowchart TD
+
+A[News Sources API<br>Reuters / BBC / etc.] --> B[Article Collection]
+
+B --> C[Filtering<br>Geopolitical relevance]
+
+C --> D[LLM Analysis]
+
+D --> E[Event Clustering<br>Group articles by event]
+
+E --> F[Event Selection<br>Top strategic developments]
+
+F --> G[Brief Generation]
+
+G --> H[Strategic Trend Analysis]
+
+G --> I[Global Risk Score]
+
+J[Historical Events Dataset] --> K["This Day in Geopolitical History"]
+
+H --> L[Final SITREP Briefing]
+I --> L
+K --> L
+
+L --> M[Discord Bot]
+
+```
+
 ---
 
 # Running the Bot
