@@ -1,5 +1,6 @@
 import os
 from openai import OpenAI
+from datetime import datetime
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -17,6 +18,9 @@ Source: {article['source']}
 URL: {article['url']}
 
 """
+
+    # ✅ bien indenté DANS la fonction
+    today = datetime.now().strftime("%B %d, %Y")
 
     prompt = f"""
 You are a geopolitical intelligence analyst.
@@ -41,7 +45,7 @@ Articles:
 
 Output format:
 
-🌍 SITREP – [DATE]
+🌍 SITREP – {today}
 
 1️⃣ [Event title]
 [Summary]
