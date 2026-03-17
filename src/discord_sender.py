@@ -2,6 +2,13 @@ import os
 import requests
 
 
+MAX_MESSAGE_LENGTH = 2000
+
+
+def split_message(message):
+    return [message[i:i+MAX_MESSAGE_LENGTH] for i in range(0, len(message), MAX_MESSAGE_LENGTH)]
+
+
 def send_to_discord(message: str):
 
     webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
@@ -10,14 +17,19 @@ def send_to_discord(message: str):
         print("Missing DISCORD_WEBHOOK_URL")
         return
 
-    data = {
-        "content": message
-    }
+    messages = split_message(message)
 
-    response = requests.post(webhook_url, json=data)
+    for part in messages:
 
-    if response.status_code == 204:
-        print("Message sent successfully")
-    else:
-        print(f"Failed to send message: {response.status_code}")
-        print(response.text)
+        data = {
+            "content": part
+        }
+
+        response = requests.post(webhook_url, json=data)
+
+        if response.status_code != 204:
+            print(f"Failed to send message: {response.status_code}")
+            print(response.text)
+            return
+
+    print("Message sent successfully")
