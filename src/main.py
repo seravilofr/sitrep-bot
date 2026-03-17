@@ -1,4 +1,4 @@
-from src.discord_sender import send_to_discord
+from discord_sender import send_to_discord
 
 
 def main():
