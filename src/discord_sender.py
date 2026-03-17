@@ -1,12 +1,35 @@
 import os
 import requests
 
-
 MAX_MESSAGE_LENGTH = 2000
 
 
-def split_message(message):
-    return [message[i:i+MAX_MESSAGE_LENGTH] for i in range(0, len(message), MAX_MESSAGE_LENGTH)]
+def split_message(message, max_length=MAX_MESSAGE_LENGTH):
+    parts = []
+
+    while len(message) > max_length:
+
+        chunk = message[:max_length]
+
+        # 1️⃣ Essaye de couper à un saut de ligne
+        split_index = chunk.rfind("\n")
+
+        # 2️⃣ Sinon coupe à un espace
+        if split_index == -1:
+            split_index = chunk.rfind(" ")
+
+        # 3️⃣ Si rien trouvé, coupe brutalement
+        if split_index == -1:
+            split_index = max_length
+
+        parts.append(message[:split_index].strip())
+
+        message = message[split_index:].strip()
+
+    if message:
+        parts.append(message)
+
+    return parts
 
 
 def send_to_discord(message: str):
@@ -19,10 +42,10 @@ def send_to_discord(message: str):
 
     messages = split_message(message)
 
-    for part in messages:
+    for i, part in enumerate(messages):
 
         data = {
-            "content": part
+            "content": f"({i+1}/{len(messages)})\n\n{part}"
         }
 
         response = requests.post(webhook_url, json=data)
