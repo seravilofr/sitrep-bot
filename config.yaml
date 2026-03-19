@@ -6,3 +6,8 @@ timezone: Europe/Paris
 briefing_time: "08:00"
 risk_scale: "1-10"
 allow_duplicate_events: false
+blocked_sources:
+  - RT
+  - Russia Today
+  - Sputnik
+  - Fox News
