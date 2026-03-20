@@ -16,6 +16,10 @@ def main():
 
     brief = generate_brief(articles, config)
 
+    if not brief:
+    send_to_discord("⚠️ Failed to generate brief.")
+    return
+
     send_to_discord(brief)
 
 
