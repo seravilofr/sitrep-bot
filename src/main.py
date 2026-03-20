@@ -8,7 +8,7 @@ def main():
 
     config = load_config()
 
-    articles = fetch_articles()
+    articles = fetch_articles(config)
 
     if not articles:
         send_to_discord("⚠️ No articles found.")
