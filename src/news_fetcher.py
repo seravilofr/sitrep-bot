@@ -1,11 +1,10 @@
 import os
 import requests
-from config_loader import load_config
 
 
-def fetch_articles():
 
-    config = load_config()
+def fetch_articles(config):
+
     blocked_sources = [s.lower() for s in config.get("blocked_sources", [])]
 
     api_key = os.getenv("NEWS_API_KEY")
