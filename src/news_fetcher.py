@@ -20,10 +20,11 @@ def fetch_articles(config):
         "language": "en",
         "sortBy": "publishedAt",
         "pageSize": config.get("articles_to_scan", 40),
-        "apiKey": api_key
     }
-
-    response = requests.get(url, params=params)
+    
+    headers = {"X-Api-Key": api_key}
+    
+    response = requests.get(url, params=params, headers=headers)
 
     if response.status_code != 200:
         print("Error fetching news:", response.status_code)
